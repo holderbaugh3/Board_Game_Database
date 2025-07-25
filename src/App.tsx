@@ -1,34 +1,19 @@
 import './App.css';
 import React from 'react';
-import { Route, Routes, Link, BrowserRouter } from "react-router-dom";
-import About from './About';
-import Home from './Home';
+import { Route, Routes } from "react-router-dom";
+import About from './routes/About';
+import Home from './routes/Home';
+import Layout from './routes/Layout';
 
 class App extends React.Component {
   render() {
       return (
-        <div className="App">
-          <div>
-            <nav>
-              <ul id="navigation">
-                <li>
-                  <Link to="/">Home</Link>
-                </li>
-                <li>
-                <Link to="/about">About</Link>
-                </li>
-                <li>
-                <Link to="/contact">Contact</Link>
-                </li>
-              </ul>
-            </nav>
-          </div>
-            <BrowserRouter>
-              <Routes>
-                <Route path="/" element={<Home />} />
-              </Routes>
-            </BrowserRouter>
-          </div>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Home />} />
+            <Route path="/about" element={<About />}/>
+          </Route>
+        </Routes>
     );
   }
 }
